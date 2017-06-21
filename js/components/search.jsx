@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
 
 export default class Search extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            inputValue: ''
+        }
+    }
 
     render() {
         return (
-            <div>
-                <label htmlFor="search">nip/krs/regon</label>
-                <input type="text" id="search" name="searchNumber" placeholder="Podaj numer" />
-            </div>
+                <label>
+                    NIP/KRS/REGON
+                    <input 
+                        type="text" 
+                        name="searchNumber" 
+                        placeholder="Podaj numer" 
+                        value={this.state.inputValue} 
+                        onChange={event => this.handleInputValueChange(event)}
+                    />
+                </label>
         );
+    }
+
+    handleInputValueChange(event) {
+        this.setState({
+            inputValue: event.target.value
+        });
     }
 }

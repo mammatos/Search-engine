@@ -8,10 +8,10 @@ export default class SearchContainer extends Component {
 
     render() {
         return (
-            <div>
+            <form>
                 <Search/>
                 <SearchButton/>
-            </div>
+            </form>
         );
     }
 }
