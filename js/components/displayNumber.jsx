@@ -6,8 +6,12 @@ export default class DisplayNumber extends Component {
         return (
             <div>
                 <label htmlFor="number">Nr</label>
-                <input type="text" id="number" name="displayNumber"/>
+                <input type="text" id="number" name="displayNumber" value={this.props.num}/>
             </div>
         );
     }
 }
+
+DisplayNumber.defaultProps = {
+    num: ""
+};

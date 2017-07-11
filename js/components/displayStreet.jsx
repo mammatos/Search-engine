@@ -6,8 +6,12 @@ export default class DisplayStreet extends Component {
         return (
             <div>
                 <label htmlFor="street">Ulica</label>
-                <input type="text" id="street" name="displayStreet"/>
+                <input type="text" id="street" name="displayStreet" value={this.props.street}/>
             </div>
         );
     }
 }
+
+DisplayStreet.defaultProps = {
+    street: ""
+};

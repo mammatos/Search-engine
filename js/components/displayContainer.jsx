@@ -10,13 +10,14 @@ import DisplayCity from './displayCity.jsx';
 export default class DisplayContainer extends Component {
 
     render() {
+        console.log("to jest komponent displayContainer", this.props.companyInformation.Name);
         return (
             <div>
-                <DisplayName/>
-                <DisplayStreet/>
-                <DisplayNumber/>
-                <DisplayPostcode/>
-                <DisplayCity/>
+                <DisplayName name={this.props.companyInformation.Name}/>
+                <DisplayStreet street={this.props.companyInformation.Street}/>
+                <DisplayNumber num={this.props.companyInformation.HouseNumber}/>
+                <DisplayPostcode postcode={this.props.companyInformation.PostalCode}/>
+                <DisplayCity city={this.props.companyInformation.Community}/>
             </div>
         );
     }

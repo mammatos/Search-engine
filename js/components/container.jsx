@@ -34,7 +34,7 @@ export default class Container extends Component {
         $.ajax({
             url: 'http://ihaveanidea.aveneo.pl/NIPAPI/api/Company',
             data:{
-                CompanyId: "6137213367"
+                CompanyId: "KRS0000318602"
             }, 
             method: 'GET',
             dataType: 'json'
