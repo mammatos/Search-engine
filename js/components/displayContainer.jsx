@@ -10,7 +10,6 @@ import DisplayCity from './displayCity.jsx';
 export default class DisplayContainer extends Component {
 
     render() {
-        console.log("to jest komponent displayContainer", this.props.companyInformation.Name);
         return (
             <div>
                 <DisplayName name={this.props.companyInformation.Name}/>

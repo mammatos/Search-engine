@@ -27,8 +27,5 @@ export default class Search extends Component {
         this.setState({
             inputValue: event.target.value
         });
-
-        
     }
-
 }

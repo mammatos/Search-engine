@@ -9,8 +9,6 @@ const regEx4NipPl = /^pl[0-9]{10}$/i;
 const regExNipRegon = /^[0-9]{9,10}$/;
 const regEx3Krs = /^krs[0-9]{10}$/i;
 
-const compId = "6137213367";
-
 export default class Container extends Component {
 
     constructor(props){
@@ -18,23 +16,23 @@ export default class Container extends Component {
         this.state ={
             companyProfile: []
         }
-        console.log("response z api", this.state.companyProfile);
     }
 
     render() {
         return (
             <div className="container">
-                <SearchContainer callback={() => this.runApi()}/>
+                <SearchContainer callback={(compId) => this.runApi(compId)}/>
                 <DisplayContainer companyInformation={this.state.companyProfile}/>
             </div>
         );
     }
 
     runApi(compId) {
+        console.log("funkcja runApi", compId);
         $.ajax({
             url: 'http://ihaveanidea.aveneo.pl/NIPAPI/api/Company',
             data:{
-                CompanyId: "KRS0000318602"
+                CompanyId: compId
             }, 
             method: 'GET',
             dataType: 'json'

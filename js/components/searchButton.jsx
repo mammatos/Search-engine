@@ -7,12 +7,7 @@ export default class searchButton extends Component {
             <input 
                 type="submit" 
                 value="Pobierz dane"
-                onClick={event => this.onClick(event)}
             />
         )          
-    }
-
-    onClick(event){
-        this.props.mojafunkcja();
     }
 }
