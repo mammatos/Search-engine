@@ -8,10 +8,19 @@ export default class SearchContainer extends Component {
 
     render() {
         return (
-            <form>
+            <form onSubmit={event => this.onSubmit(event)}>
                 <Search/>
-                <SearchButton/>
+                <SearchButton mojafunkcja={() => this.handleButtonClicked()}/>
             </form>
         );
+    }
+
+    onSubmit(event) {
+        event.preventDefault();
+        console.log("submit wykowanany");
+    }
+
+    handleButtonClicked() {
+        this.props.callback();
     }
 }

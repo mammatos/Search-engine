@@ -9853,24 +9853,55 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Import components
 
 
+var compId = "6137213367";
+
 var Container = function (_Component) {
     _inherits(Container, _Component);
 
-    function Container() {
+    function Container(props) {
         _classCallCheck(this, Container);
 
-        return _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).call(this, props));
+
+        _this.state = {
+            companyProfile: []
+        };
+        console.log("response z api", _this.state.companyProfile);
+        return _this;
     }
 
     _createClass(Container, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 'div',
                 { className: 'container' },
-                _react2.default.createElement(_searchContainer2.default, null),
+                _react2.default.createElement(_searchContainer2.default, { callback: function callback() {
+                        return _this2.runApi();
+                    } }),
                 _react2.default.createElement(_displayContainer2.default, null)
             );
+        }
+    }, {
+        key: 'runApi',
+        value: function runApi(compId) {
+            var _this3 = this;
+
+            $.ajax({
+                url: 'http://ihaveanidea.aveneo.pl/NIPAPI/api/Company',
+                data: {
+                    CompanyId: "6137213367"
+                },
+                method: 'GET',
+                dataType: 'json'
+            }).done(function (response) {
+                console.log(response);
+                _this3.setState({
+                    companyProfile: response
+                });
+            });
         }
     }]);
 
@@ -10256,11 +10287,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var regExNip = /^[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
-var regEx4NipPl = /^pl[0-9]{10}$/i;
-var regExNipRegon = /^[0-9]{9,10}$/;
-var regEx3Krs = /^krs[0-9]{10}$/i;
-
 var Search = function (_Component) {
     _inherits(Search, _Component);
 
@@ -10346,7 +10372,20 @@ var searchButton = function (_Component) {
     _createClass(searchButton, [{
         key: "render",
         value: function render() {
-            return _react2.default.createElement("input", { type: "submit", value: "Pobierz dane" });
+            var _this2 = this;
+
+            return _react2.default.createElement("input", {
+                type: "submit",
+                value: "Pobierz dane",
+                onClick: function onClick(event) {
+                    return _this2.onClick(event);
+                }
+            });
+        }
+    }, {
+        key: "onClick",
+        value: function onClick(event) {
+            this.props.mojafunkcja();
         }
     }]);
 
@@ -10391,6 +10430,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Import components
 
 
+var regExNip = /^[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
+var regEx4NipPl = /^pl[0-9]{10}$/i;
+var regExNipRegon = /^[0-9]{9,10}$/;
+var regEx3Krs = /^krs[0-9]{10}$/i;
+
 var SearchContainer = function (_Component) {
     _inherits(SearchContainer, _Component);
 
@@ -10403,12 +10447,29 @@ var SearchContainer = function (_Component) {
     _createClass(SearchContainer, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 'form',
-                null,
+                { onSubmit: function onSubmit(event) {
+                        return _this2.onSubmit(event);
+                    } },
                 _react2.default.createElement(_search2.default, null),
-                _react2.default.createElement(_searchButton2.default, null)
+                _react2.default.createElement(_searchButton2.default, { mojafunkcja: function mojafunkcja() {
+                        return _this2.handleButtonClicked();
+                    } })
             );
+        }
+    }, {
+        key: 'onSubmit',
+        value: function onSubmit(event) {
+            event.preventDefault();
+            console.log("submit wykowanany");
+        }
+    }, {
+        key: 'handleButtonClicked',
+        value: function handleButtonClicked() {
+            this.props.callback();
         }
     }]);
 
