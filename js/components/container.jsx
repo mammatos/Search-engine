@@ -4,11 +4,6 @@ import React, { Component } from 'react';
 import SearchContainer from './searchContainer.jsx';
 import DisplayContainer from './displayContainer.jsx';
 
-const regExNip = /^[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
-const regEx4NipPl = /^pl[0-9]{10}$/i;
-const regExNipRegon = /^[0-9]{9,10}$/;
-const regEx3Krs = /^krs[0-9]{10}$/i;
-
 export default class Container extends Component {
 
     constructor(props){
@@ -27,6 +22,10 @@ export default class Container extends Component {
         );
     }
 
+    /**
+     * Makes requests to API with given value.
+     * @param {String} compId  value from input.
+     */
     runApi(compId) {
         console.log("funkcja runApi", compId);
         $.ajax({

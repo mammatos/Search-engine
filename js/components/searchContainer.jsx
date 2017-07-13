@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // Import components
 import Search from './search.jsx';
 import SearchButton from './searchButton.jsx';
+import { isNumberValid } from '../validator.js';
 
 export default class SearchContainer extends Component {
 
@@ -25,6 +26,10 @@ export default class SearchContainer extends Component {
         console.log("submit wykowanany");
         console.log("jak wygląda event przy kliku", event.target[0].value);
         const valueInput = event.target[0].value;
-        this.props.callback(valueInput);
+        if(isNumberValid(valueInput)) {
+            this.props.callback(valueInput);
+        } else {
+            alert("zły numer");
+        }
     }
 }
