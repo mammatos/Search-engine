@@ -18,6 +18,7 @@ export default class Search extends Component {
                         placeholder="Podaj numer" 
                         value={this.state.inputValue} 
                         onChange={event => this.handleInputValueChange(event)}
+                        className={this.props.errorBorder}
                     />
                 </label>
         );

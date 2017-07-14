@@ -37,7 +37,7 @@ export default class Container extends Component {
             dataType: 'json'
         })
         .done((response) => {
-            console.log(response.CompanyInformation);
+            console.log("odpowiedź API:", response.CompanyInformation);
             this.setState({
                 companyProfile: response.CompanyInformation
             });
