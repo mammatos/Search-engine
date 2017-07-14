@@ -9,14 +9,18 @@ export default class Container extends Component {
     constructor(props){
         super(props);
         this.state ={
-            companyProfile: []
+            companyProfile: [],
+            lackInformation: ""
         }
     }
 
     render() {
         return (
             <div className="container">
-                <SearchContainer callback={(compId) => this.runApi(compId)}/>
+                <SearchContainer 
+                    lackInfo={this.state.lackInformation} 
+                    callback={(compId) => this.runApi(compId)}
+                />
                 <DisplayContainer companyInformation={this.state.companyProfile}/>
             </div>
         );
@@ -38,9 +42,17 @@ export default class Container extends Component {
         })
         .done((response) => {
             console.log("odpowiedź API:", response.CompanyInformation);
-            this.setState({
-                companyProfile: response.CompanyInformation
-            });
+            if(response.CompanyInformation !== null) {
+                this.setState({
+                    companyProfile: response.CompanyInformation,
+                    lackInformation: ""
+                });
+            } else {
+                console.log("Numer nie występuje w bazie.");
+                this.setState({
+                    lackInformation: "Numer nie występuje w bazie."
+                });
+            }
         });
     }
 }

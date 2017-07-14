@@ -19,7 +19,7 @@ export default class SearchContainer extends Component {
             <form onSubmit={event => this.onSubmit(event)}>
                 <Search errorBorder={this.state.errorBorder}/>
                 <SearchButton/>
-                <p>{this.state.errorMessage}</p>
+                <p>{this.state.errorMessage}{this.props.lackInfo}</p>
             </form>
         );
     }
@@ -33,6 +33,7 @@ export default class SearchContainer extends Component {
         event.preventDefault();
         console.log("submit wykowanany");
         console.log("jak wygląda event przy kliku", event.target[0].value);
+
         const valueInput = event.target[0].value;
         if(isNumberValid(valueInput)) {
             this.props.callback(valueInput);
