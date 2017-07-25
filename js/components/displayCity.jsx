@@ -6,7 +6,13 @@ export default class DisplayCity extends Component {
         return (
             <div>
                 <label htmlFor="city">Miasto</label>
-                <input type="text" id="city" name="displayCity" value={this.props.city}/>
+                <input 
+                    type="text"
+                    id="city"
+                    name="displayCity"
+                    value={this.props.city}
+                    readOnly
+                />
             </div>
         );
     }

@@ -24,7 +24,6 @@ export default class Search extends Component {
         );
     }
 
-
     /**
      * Handle onChange event.
      * Change state when user change the value of input.

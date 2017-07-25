@@ -5,7 +5,13 @@ export default class DisplayName extends Component {
         return (
             <div>
                 <label htmlFor="name">Nazwa</label>
-                <input type="text" id="name" name="displayName" value={this.props.name}/>
+                <input 
+                    type="text"
+                    id="name"
+                    name="displayName"
+                    value={this.props.name}
+                    readOnly
+                />
             </div>
         );
     }

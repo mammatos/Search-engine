@@ -8,15 +8,25 @@ import DisplayPostcode from './displayPostcode.jsx';
 import DisplayCity from './displayCity.jsx';
 
 export default class DisplayContainer extends Component {
-
     render() {
+        if (this.props.companyInformation === null) {
+            return null;
+        }
+        const {
+            Name,
+            Street,
+            HouseNumber,
+            PostalCode,
+            Community
+        } = this.props.companyInformation;
+       
         return (
             <div>
-                <DisplayName name={this.props.companyInformation.Name}/>
-                <DisplayStreet street={this.props.companyInformation.Street}/>
-                <DisplayNumber num={this.props.companyInformation.HouseNumber}/>
-                <DisplayPostcode postcode={this.props.companyInformation.PostalCode}/>
-                <DisplayCity city={this.props.companyInformation.Community}/>
+                <DisplayName name={Name}/>
+                <DisplayStreet street={Street}/>
+                <DisplayNumber num={HouseNumber}/>
+                <DisplayPostcode postcode={PostalCode}/>
+                <DisplayCity city={Community}/>
             </div>
         );
     }

@@ -10,7 +10,7 @@ export default class Container extends Component {
     constructor(props){
         super(props);
         this.state ={
-            companyProfile: [],
+            companyProfile: null,
             errorMessage: ""
         }
     }
@@ -28,9 +28,6 @@ export default class Container extends Component {
     }
 
     handleInputValue(valueInput) {
-        // validacja
-            // jeśli ok -> runApi + clean error message
-            // jeśli nie => set State z errorMessage
         if(isNumberValid(valueInput)) {
             this.setState({
                 errorMessage: ""
@@ -40,7 +37,8 @@ export default class Container extends Component {
         else {
             const message = getErrorMessage(valueInput);
             this.setState({
-                errorMessage: message
+                errorMessage: message,
+                companyProfile: null
             });
         }
     }
@@ -69,7 +67,8 @@ export default class Container extends Component {
             } else {
                 console.log("Numer nie występuje w bazie.");
                 this.setState({
-                    errorMessage: "Numer nie występuje w bazie."
+                    errorMessage: "Numer nie występuje w bazie.",
+                    companyProfile: null
                 });
             }
         });
