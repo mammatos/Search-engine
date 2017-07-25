@@ -18,3 +18,15 @@ export const isNumberValid = (el) => {
 
     return regExNip.test(el) || regExNipPl.test(el) || regExNipRegon.test(el) || regExKrs.test(el);
 }
+
+export const getErrorMessage = (valueInput) => {
+    if (valueInput.length === 0) {
+        return "Nie wpisano numeru.";
+    } else if (valueInput.length < 9) {
+        return "Wpisany numer jest za krótki.";
+    } else if (valueInput.length > 15) {
+        return "Wpisany numer jest zbyt długi.";
+    } else {
+        return "Podany numer jest błędny.";
+    }
+};

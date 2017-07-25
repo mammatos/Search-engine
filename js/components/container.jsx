@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // Import components
 import SearchContainer from './searchContainer.jsx';
 import DisplayContainer from './displayContainer.jsx';
+import { isNumberValid, getErrorMessage } from '../validator.js';
 
 export default class Container extends Component {
 
@@ -10,7 +11,7 @@ export default class Container extends Component {
         super(props);
         this.state ={
             companyProfile: [],
-            lackInformation: ""
+            errorMessage: ""
         }
     }
 
@@ -18,12 +19,30 @@ export default class Container extends Component {
         return (
             <div className="container">
                 <SearchContainer 
-                    lackInfo={this.state.lackInformation} 
-                    callback={(compId) => this.runApi(compId)}
+                    errorMessage={this.state.errorMessage} 
+                    callback={(compId) => this.handleInputValue(compId)}
                 />
                 <DisplayContainer companyInformation={this.state.companyProfile}/>
             </div>
         );
+    }
+
+    handleInputValue(valueInput) {
+        // validacja
+            // jeśli ok -> runApi + clean error message
+            // jeśli nie => set State z errorMessage
+        if(isNumberValid(valueInput)) {
+            this.setState({
+                errorMessage: ""
+            });
+            this.runApi(valueInput);
+        }
+        else {
+            const message = getErrorMessage(valueInput);
+            this.setState({
+                errorMessage: message
+            });
+        }
     }
 
     /**
@@ -45,12 +64,12 @@ export default class Container extends Component {
             if(response.CompanyInformation !== null) {
                 this.setState({
                     companyProfile: response.CompanyInformation,
-                    lackInformation: ""
+                    errorMessage: ""
                 });
             } else {
                 console.log("Numer nie występuje w bazie.");
                 this.setState({
-                    lackInformation: "Numer nie występuje w bazie."
+                    errorMessage: "Numer nie występuje w bazie."
                 });
             }
         });
