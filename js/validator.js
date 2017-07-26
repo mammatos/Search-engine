@@ -2,6 +2,7 @@ const regExNip = /^[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 const regExNipPl = /^pl[0-9]{10}$/i;
 const regExNipRegon = /^[0-9]{9,10}$/;
 const regExKrs = /^krs[0-9]{10}$/i;
+const regExOth = /^[0-9]{14}$/;
 
 export const isNumberValid = (el) => {
     // if(regExNip.test(el)) {
@@ -16,7 +17,7 @@ export const isNumberValid = (el) => {
     //     return false;
     // }
 
-    return regExNip.test(el) || regExNipPl.test(el) || regExNipRegon.test(el) || regExKrs.test(el);
+    return regExNip.test(el) || regExNipPl.test(el) || regExNipRegon.test(el) || regExKrs.test(el) || regExOth.test(el);
 }
 
 export const getErrorMessage = (valueInput) => {

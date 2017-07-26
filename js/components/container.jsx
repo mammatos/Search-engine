@@ -11,7 +11,8 @@ export default class Container extends Component {
         super(props);
         this.state ={
             companyProfile: null,
-            errorMessage: ""
+            errorMessage: "",
+            isLoading: false
         }
     }
 
@@ -22,7 +23,10 @@ export default class Container extends Component {
                     errorMessage={this.state.errorMessage} 
                     callback={(compId) => this.handleInputValue(compId)}
                 />
-                <DisplayContainer companyInformation={this.state.companyProfile}/>
+                <DisplayContainer 
+                    companyInformation={this.state.companyProfile}
+                    showLoader={this.state.isLoading}
+                />
             </div>
         );
     }
@@ -49,6 +53,9 @@ export default class Container extends Component {
      */
     runApi(compId) {
         console.log("funkcja runApi", compId);
+        this.setState({
+            isLoading: true
+        });
         $.ajax({
             url: 'http://ihaveanidea.aveneo.pl/NIPAPI/api/Company',
             data:{
@@ -58,6 +65,9 @@ export default class Container extends Component {
             dataType: 'json'
         })
         .done((response) => {
+            this.setState({
+            isLoading: false
+            });
             console.log("odpowiedź API:", response.CompanyInformation);
             if(response.CompanyInformation !== null) {
                 this.setState({

@@ -6,9 +6,14 @@ import DisplayStreet from './displayStreet.jsx';
 import DisplayNumber from './displayNumber.jsx';
 import DisplayPostcode from './displayPostcode.jsx';
 import DisplayCity from './displayCity.jsx';
+import Loader from './loader.jsx';
 
 export default class DisplayContainer extends Component {
     render() {
+            if(this.props.showLoader) {
+                return <Loader />;
+            } 
+        
         if (this.props.companyInformation === null) {
             return null;
         }
@@ -19,7 +24,6 @@ export default class DisplayContainer extends Component {
             PostalCode,
             Community
         } = this.props.companyInformation;
-       
         return (
             <div>
                 <DisplayName name={Name}/>
